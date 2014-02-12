@@ -1,5 +1,5 @@
 {
-	"name":"cliffparnitzky/direct-ccontent-elements",
+	"name":"cliffparnitzky/direct-content-elements",
 	"description":"Directly lists all content elements of articles. Provides the possibility to edit content elements across articles (multi-editing).",
 	"keywords":["contao","backend","multi edit","content elements"],
 	"type":"contao-module",
