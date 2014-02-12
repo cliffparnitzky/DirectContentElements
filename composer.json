@@ -1,0 +1,34 @@
+{
+	"name":"cliffparnitzky/direct-ccontent-elements",
+	"description":"Directly lists all content elements of articles. Provides the possibility to edit content elements across articles (multi-editing).",
+	"keywords":["contao","backend","multi edit","content elements"],
+	"type":"contao-module",
+	"license":"LGPL-3.0+",
+	"authors":[
+		{
+			"name":"Cliff Parnitzky",
+			"email":"contao@cliff-parnitzky.de",
+			"role":"Developer"
+		}
+	],
+	"support":{
+		"email":"contao@cliff-parnitzky.de",
+		"issues":"https://github.com/cliffparnitzky/DirectContentElements/issues",
+		"source":"https://github.com/cliffparnitzky/DirectContentElements"
+	},
+	"require":{
+		"php":">=5.3",
+		"contao/core":">=3.0.0,<4.0.0-dev",
+		"contao-community-alliance/composer-installer":"*"
+	},
+	"extra":{
+		"contao":{
+			"sources":{
+				"system/modules/DirectContentElements":"system/modules/DirectContentElements"
+			}
+		},
+		"branch-alias": {
+			"dev-master": "1.0.x-dev"
+		}
+	}
+}
