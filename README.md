@@ -10,7 +10,7 @@ Installation
 ------------
 
 The extension is not published in contao extension repository.
-Install it manually or via [composer](https://packagist.org/packages/cliffparnitzky/direct-ccontent-elements).
+Install it manually or via [composer](https://packagist.org/packages/cliffparnitzky/direct-content-elements).
 
 
 Tracker
