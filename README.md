@@ -23,7 +23,7 @@ Compatibility
 -------------
 
 - min. version: Contao 3.0.x
-- max. version: Contao 3.2.0
+- max. version: Contao 3.2.x
 
 
 Dependency
