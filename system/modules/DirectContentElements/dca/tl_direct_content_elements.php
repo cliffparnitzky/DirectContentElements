@@ -61,7 +61,7 @@ class tl_direct_content_elements extends Backend
 		$table = 'tl_content';
 		
 		// load dca and language
-		$this->loadLanguageFile($table);
+		$this->loadLanguageFile($table); // needed for panel layout
 		$this->loadDataContainer($table);
 		
 		// modify config
@@ -70,10 +70,11 @@ class tl_direct_content_elements extends Backend
 		// modify sorting
 		$GLOBALS['TL_DCA'][$table]['list']['sorting']['filter'] = array(array('ptable = ? OR ptable = ""', 'tl_article'));
 		$GLOBALS['TL_DCA'][$table]['list']['sorting']['mode'] = 1;
-		$GLOBALS['TL_DCA'][$table]['list']['sorting']['fields'] = array('pid', 'sorting');
+		$GLOBALS['TL_DCA'][$table]['list']['sorting']['flag'] = 11;
+		$GLOBALS['TL_DCA'][$table]['list']['sorting']['fields'] = array('pid', 'sorting'); // '(SELECT a.title FROM tl_article a where a.id = tl_content.pid)', 
 		// modify label
-		$GLOBALS['TL_DCA'][$table]['list']['label']['fields'] = array('pid:tl_article.title', 'pid:tl_article.inColumn', 'type', 'id');
-		$GLOBALS['TL_DCA'][$table]['list']['label']['format'] = '%s <span style="color:#b3b3b3;padding-left:3px">[%s]</span> &raquo; %s <span style="color:#b3b3b3;padding-left:3px">[ID: %s]</span>';
+		$GLOBALS['TL_DCA'][$table]['list']['label']['fields'] = array('id');
+		$GLOBALS['TL_DCA'][$table]['list']['label']['label_callback'] = array('tl_direct_content_elements', 'getLabel');
 		$GLOBALS['TL_DCA'][$table]['list']['label']['group_callback'] = array('tl_direct_content_elements', 'getGroupName');
 		// remove some operations
 		unset($GLOBALS['TL_DCA'][$table]['list']['operations']['copy']);
@@ -87,9 +88,21 @@ class tl_direct_content_elements extends Backend
 	/**
 	 * Creates the name of the group, should be the pages name
 	 */
+	public function getLabel($row, $label, DataContainer $dc)
+	{
+		$objArticle = $objArticle = \ArticleModel::findByPk($row['pid']);
+		$this->loadLanguageFile('tl_article');
+		$this->loadLanguageFile('tl_content');
+		
+		return $objArticle->title . ' <span style="color:#b3b3b3;padding-left:3px">[' . $GLOBALS['TL_LANG']['tl_article'][$objArticle->inColumn] . ']</span> &raquo; ' . $GLOBALS['TL_LANG']['CTE'][$row['type']][0] . ' <span style="color:#b3b3b3;padding-left:3px">[ID: ' . $row['id'] . ']</span>';
+	}
+	
+	/**
+	 * Creates the name of the group, should be the pages name
+	 */
 	public function getGroupName($group, $sortingMode, $firstOrderBy, $row, DataContainer $dc)
 	{
-		$objPage = $this->Database->prepare('SELECT * FROM tl_page p JOIN tl_article a ON a.pid = p.id WHERE a.id = ?')->limit(1)->execute($row['pid']);
+		$objPage = $this->Database->prepare('SELECT p.* FROM tl_page p JOIN tl_article a ON a.pid = p.id WHERE a.id = ?')->limit(1)->execute($row['pid']);
 		if ($objPage->numRows)
 		{
 			$group = \Image::getHtml(\Controller::getPageStatusIcon($objPage), '', null) . " " . $objPage->title;
