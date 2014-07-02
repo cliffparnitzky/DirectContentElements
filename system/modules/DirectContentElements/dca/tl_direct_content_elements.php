@@ -61,17 +61,18 @@ class tl_direct_content_elements extends Backend
 		$table = 'tl_content';
 		
 		// load dca and language
-		$this->loadLanguageFile($table); // needed for panel layout
+		$this->loadLanguageFile($table);
 		$this->loadDataContainer($table);
 		
 		// modify config
 		$GLOBALS['TL_DCA'][$table]['config']['closed'] = true;
 		$GLOBALS['TL_DCA'][$table]['config']['ptable'] = 'tl_article';
+		$GLOBALS['TL_DCA'][$table]['config']['onload_callback'] = array(array('tl_direct_content_elements', 'refreshPageTitle'));
 		// modify sorting
 		$GLOBALS['TL_DCA'][$table]['list']['sorting']['filter'] = array(array('(ptable = ? OR ptable = "")', 'tl_article'));
 		$GLOBALS['TL_DCA'][$table]['list']['sorting']['mode'] = 1;
 		$GLOBALS['TL_DCA'][$table]['list']['sorting']['flag'] = 11;
-		$GLOBALS['TL_DCA'][$table]['list']['sorting']['fields'] = array('pid', 'sorting'); // '(SELECT a.title FROM tl_article a where a.id = tl_content.pid)', 
+		$GLOBALS['TL_DCA'][$table]['list']['sorting']['fields'] = array('page_title', '(SELECT a.sorting FROM tl_article a where a.id = tl_content.pid)', 'sorting');
 		// modify label
 		$GLOBALS['TL_DCA'][$table]['list']['label']['fields'] = array('id');
 		$GLOBALS['TL_DCA'][$table]['list']['label']['label_callback'] = array('tl_direct_content_elements', 'getLabel');
@@ -81,6 +82,14 @@ class tl_direct_content_elements extends Backend
 		unset($GLOBALS['TL_DCA'][$table]['list']['operations']['cut']);
 		// modfiy edit operation
 		$GLOBALS['TL_DCA'][$table]['list']['operations']['edit']['href'] = 'do=article&table=tl_content&' . $GLOBALS['TL_DCA'][$table]['list']['operations']['edit']['href'];
+		// add jump to article operation
+		$GLOBALS['TL_DCA'][$table]['list']['operations']['jump_to_article'] = array
+		(
+			'label'               => &$GLOBALS['TL_LANG']['tl_content']['jump_to_article'],
+			'href'                => 'do=article&table=tl_content',
+			'icon'                => 'article.gif',
+			'button_callback'     => array('tl_direct_content_elements', 'jumpToArticle')
+		);
 		// add additonal filter and search fields
 		$GLOBALS['TL_DCA']['tl_content']['fields']['cssID']['filter'] = true;
 		$GLOBALS['TL_DCA']['tl_content']['fields']['cssID']['search'] = true;
@@ -88,6 +97,19 @@ class tl_direct_content_elements extends Backend
 		$GLOBALS['TL_DCA']['tl_content']['fields']['space']['search'] = true;
 		
 		return $table;
+	}
+	
+	/**
+	 * Resort the document sorting value
+	 * @param DataContainer
+	 */
+	public function refreshPageTitle(DataContainer $dc)
+	{
+		if (!\Input::get('act'))
+		{
+			\Database::getInstance()->prepare("UPDATE tl_content c SET c.page_title = (SELECT CONCAT(p.title, '_', p.id) FROM tl_page p JOIN tl_article a ON a.pid = p.id WHERE a.id = c.pid)")
+															->execute();
+		}
 	}
 	
 	/**
@@ -107,12 +129,20 @@ class tl_direct_content_elements extends Backend
 	 */
 	public function getGroupName($group, $sortingMode, $firstOrderBy, $row, DataContainer $dc)
 	{
-		$objPage = $this->Database->prepare('SELECT p.* FROM tl_page p JOIN tl_article a ON a.pid = p.id WHERE a.id = ?')->limit(1)->execute($row['pid']);
+		$objPage = \Database::getInstance()->prepare('SELECT p.* FROM tl_page p JOIN tl_article a ON a.pid = p.id WHERE a.id = ?')->limit(1)->execute($row['pid']);
 		if ($objPage->numRows)
 		{
-			$group = \Image::getHtml(\Controller::getPageStatusIcon($objPage), '', null) . " " . $objPage->title;
+			$group = \Image::getHtml(\Controller::getPageStatusIcon($objPage), '', null) . " " . $objPage->title . ' <span style="color:#b3b3b3;padding-left:3px">[ID: ' . $objPage->id . ']</span>';
 		}
 		return $group;
+	}
+	
+	/**
+	 * Return the "jump_to_article" button
+	 */
+	public function jumpToArticle($row, $href, $label, $title, $icon, $attributes)
+	{
+		return '<a href="'.$this->addToUrl($href . '&id=' . $row['pid']).'" title="'.specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> '; 
 	}
 }
 
