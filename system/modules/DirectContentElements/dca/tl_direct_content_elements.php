@@ -72,7 +72,7 @@ class tl_direct_content_elements extends Backend
 		$GLOBALS['TL_DCA'][$table]['list']['sorting']['filter'] = array(array('(ptable = ? OR ptable = "")', 'tl_article'));
 		$GLOBALS['TL_DCA'][$table]['list']['sorting']['mode'] = 1;
 		$GLOBALS['TL_DCA'][$table]['list']['sorting']['flag'] = 11;
-		$GLOBALS['TL_DCA'][$table]['list']['sorting']['fields'] = array('page_title', '(SELECT a.sorting FROM tl_article a where a.id = tl_content.pid)', 'sorting');
+		$GLOBALS['TL_DCA'][$table]['list']['sorting']['fields'] = array('dce_page_group', '(SELECT a.sorting FROM tl_article a where a.id = tl_content.pid)', 'sorting');
 		// modify label
 		$GLOBALS['TL_DCA'][$table]['list']['label']['fields'] = array('id');
 		$GLOBALS['TL_DCA'][$table]['list']['label']['label_callback'] = array('tl_direct_content_elements', 'getLabel');
@@ -107,7 +107,7 @@ class tl_direct_content_elements extends Backend
 	{
 		if (!\Input::get('act'))
 		{
-			\Database::getInstance()->prepare("UPDATE tl_content c SET c.page_title = (SELECT CONCAT(p.title, '_', p.id) FROM tl_page p JOIN tl_article a ON a.pid = p.id WHERE a.id = c.pid)")
+			\Database::getInstance()->prepare("UPDATE tl_content c SET c.dce_page_group = (SELECT CONCAT(p.title, '_', p.id) FROM tl_page p JOIN tl_article a ON a.pid = p.id WHERE a.id = c.pid)")
 															->execute();
 		}
 	}

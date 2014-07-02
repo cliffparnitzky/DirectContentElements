@@ -30,7 +30,7 @@
 /**
  * Add fields with page title, needed for sorting and grouping
  */
-$GLOBALS['TL_DCA']['tl_content']['fields']['page_title'] = array
+$GLOBALS['TL_DCA']['tl_content']['fields']['dce_page_group'] = array
 (
 	'sql' => "varchar(265) NOT NULL default ''"
 );
