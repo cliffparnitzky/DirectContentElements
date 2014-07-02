@@ -68,7 +68,7 @@ class tl_direct_content_elements extends Backend
 		$GLOBALS['TL_DCA'][$table]['config']['closed'] = true;
 		$GLOBALS['TL_DCA'][$table]['config']['ptable'] = 'tl_article';
 		// modify sorting
-		$GLOBALS['TL_DCA'][$table]['list']['sorting']['filter'] = array(array('ptable = ? OR ptable = ""', 'tl_article'));
+		$GLOBALS['TL_DCA'][$table]['list']['sorting']['filter'] = array(array('(ptable = ? OR ptable = "")', 'tl_article'));
 		$GLOBALS['TL_DCA'][$table]['list']['sorting']['mode'] = 1;
 		$GLOBALS['TL_DCA'][$table]['list']['sorting']['flag'] = 11;
 		$GLOBALS['TL_DCA'][$table]['list']['sorting']['fields'] = array('pid', 'sorting'); // '(SELECT a.title FROM tl_article a where a.id = tl_content.pid)', 
@@ -81,6 +81,11 @@ class tl_direct_content_elements extends Backend
 		unset($GLOBALS['TL_DCA'][$table]['list']['operations']['cut']);
 		// modfiy edit operation
 		$GLOBALS['TL_DCA'][$table]['list']['operations']['edit']['href'] = 'do=article&table=tl_content&' . $GLOBALS['TL_DCA'][$table]['list']['operations']['edit']['href'];
+		// add additonal filter and search fields
+		$GLOBALS['TL_DCA']['tl_content']['fields']['cssID']['filter'] = true;
+		$GLOBALS['TL_DCA']['tl_content']['fields']['cssID']['search'] = true;
+		$GLOBALS['TL_DCA']['tl_content']['fields']['space']['filter'] = true;
+		$GLOBALS['TL_DCA']['tl_content']['fields']['space']['search'] = true;
 		
 		return $table;
 	}
