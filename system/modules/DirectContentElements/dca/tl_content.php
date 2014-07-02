@@ -32,7 +32,8 @@
  */
 $GLOBALS['TL_DCA']['tl_content']['fields']['dce_page_group'] = array
 (
-	'sql' => "varchar(265) NOT NULL default ''"
+	'eval' => array('doNotShow'=>true),
+	'sql'  => "varchar(265) NOT NULL default ''"
 );
 
 ?>
