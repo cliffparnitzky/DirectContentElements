@@ -1,3 +1,7 @@
+[![Latest Version on Packagist](http://img.shields.io/packagist/v/cliffparnitzky/direct-content-elements.svg?style=flat)](https://packagist.org/packages/cliffparnitzky/direct-content-elements)
+[![Installations via composer per month](http://img.shields.io/packagist/dm/cliffparnitzky/direct-content-elements.svg?style=flat)](https://packagist.org/packages/cliffparnitzky/direct-content-elements)
+[![Installations via composer total](http://img.shields.io/packagist/dt/cliffparnitzky/direct-content-elements.svg?style=flat)](https://packagist.org/packages/cliffparnitzky/direct-content-elements)
+
 Contao Extension: DirectContentElements
 =======================================
 
@@ -9,8 +13,9 @@ Provides the possibility to edit content elements across articles (multi-editing
 Installation
 ------------
 
-The extension is not published in contao extension repository.
-Install it manually or via [composer](https://packagist.org/packages/cliffparnitzky/direct-content-elements).
+Install the extension via composer: [cliffparnitzky/direct-content-elements](https://packagist.org/packages/cliffparnitzky/direct-content-elements).
+
+If you prefer to install it manually, download the latest release here: https://github.com/cliffparnitzky/DirectContentElements/releases
 
 
 Tracker
@@ -22,17 +27,17 @@ https://github.com/cliffparnitzky/DirectContentElements/issues
 Compatibility
 -------------
 
-- min. version: Contao 3.0.x
-- max. version: Contao 3.2.x
+- min. Contao version: >= 3.2.0
+- max. Contao version: <  3.6.0
 
 
 Dependency
 ----------
 
-- There are no dependencies to other extensions, that have to be installed.
+There are no dependencies to other extensions, that have to be installed.
 
 
 Screenshots
 -----------
 
-![Screenshot: Backend view](https://raw.github.com/cliffparnitzky/DirectContentElements/master/screenshot.jpg)
+![Screenshot: Backend view](screenshot.jpg)
