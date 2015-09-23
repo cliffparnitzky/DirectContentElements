@@ -95,6 +95,8 @@ class tl_direct_content_elements extends Backend
 		$GLOBALS['TL_DCA']['tl_content']['fields']['cssID']['search'] = true;
 		$GLOBALS['TL_DCA']['tl_content']['fields']['space']['filter'] = true;
 		$GLOBALS['TL_DCA']['tl_content']['fields']['space']['search'] = true;
+		$GLOBALS['TL_DCA']['tl_content']['fields']['module']['search'] = true;
+		$GLOBALS['TL_DCA']['tl_content']['fields']['form']['search'] = true;
 		
 		return $table;
 	}
