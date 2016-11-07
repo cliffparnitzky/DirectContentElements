@@ -47,7 +47,7 @@ class DC_DynamicTable extends DC_Table
 			foreach ($GLOBALS['TL_DCA'][$strTable]['config']['oncreate_callback'] as $callback)
 			{
 				$this->import($callback[0]);
-				$strTable = $this->$callback[0]->$callback[1]($strTable);
+				$strTable =$this->{$callback[0]}->{$callback[1]}($strTable);
 			}
 		}
 
