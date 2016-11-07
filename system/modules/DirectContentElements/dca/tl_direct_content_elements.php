@@ -123,7 +123,9 @@ class tl_direct_content_elements extends Backend
 		$this->loadLanguageFile('tl_article');
 		$this->loadLanguageFile('tl_content');
 		
-		return $objArticle->title . ' <span style="color:#b3b3b3;padding-left:3px">[' . $GLOBALS['TL_LANG']['tl_article'][$objArticle->inColumn] . ']</span> &raquo; ' . $GLOBALS['TL_LANG']['CTE'][$row['type']][0] . ' <span style="color:#b3b3b3;padding-left:3px">[ID: ' . $row['id'] . ']</span>';
+		$strInColumnText = version_compare(VERSION, '3.5', '>=') ? $GLOBALS['TL_LANG']['COLS'][$objArticle->inColumn] : $GLOBALS['TL_LANG']['tl_article'][$objArticle->inColumn];
+		
+		return $objArticle->title . ' <span style="color:#b3b3b3;padding-left:3px">[' . $strInColumnText . ']</span> &raquo; ' . $GLOBALS['TL_LANG']['CTE'][$row['type']][0] . ' <span style="color:#b3b3b3;padding-left:3px">[ID: ' . $row['id'] . ']</span>';
 	}
 	
 	/**
