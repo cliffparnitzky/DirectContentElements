@@ -1,6 +1,6 @@
 {
 	"name":"cliffparnitzky/direct-content-elements",
-	"description":"Directly lists all content elements of articles. Provides the possibility to edit content elements across articles (multi-editing).",
+	"description":"Directly lists all content elements of articles, news and events. Provides the possibility to edit content elements across parent containers (multi-editing).",
 	"keywords":["contao","backend","multi edit","content elements"],
 	"type":"contao-module",
 	"license":"LGPL-3.0+",
@@ -31,7 +31,7 @@
 			}
 		},
 		"branch-alias": {
-			"dev-master": "1.1.x-dev"
+			"dev-master": "1.2.x-dev"
 		}
 	}
 }
