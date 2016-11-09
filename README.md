@@ -5,9 +5,9 @@
 Contao Extension: DirectContentElements
 =======================================
 
-Directly lists all content elements of articles.
+Directly lists all content elements of articles, news and events.
 
-Provides the possibility to edit content elements across articles (multi-editing).
+Provides the possibility to edit content elements across parent containers (multi-editing).
 
 
 Installation
@@ -40,4 +40,4 @@ There are no dependencies to other extensions, that have to be installed.
 Screenshots
 -----------
 
-![Screenshot: Backend view](screenshot.jpg)
+![Screenshot: Backend view](screenshot.png)
