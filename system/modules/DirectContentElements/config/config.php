@@ -2,7 +2,7 @@
 
 /**
  * Contao Open Source CMS
- * Copyright (C) 2005-2014 Leo Feyer
+ * Copyright (C) 2005-2016 Leo Feyer
  *
  * Formerly known as TYPOlight Open Source CMS.
  *
@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Cliff Parnitzky 2014
+ * @copyright  Cliff Parnitzky 2014-2016
  * @author     Cliff Parnitzky
  * @package    DirectContentElements
  * @license    LGPL
@@ -30,19 +30,57 @@
 /*
  * Backend modules
  */
-array_insert($GLOBALS['BE_MOD']['content'], count($GLOBALS['BE_MOD']['article'])+1, array
+// for articles
+array_insert($GLOBALS['BE_MOD']['content'], array_search('article', array_keys($GLOBALS['BE_MOD']['content'])) + 1, array
 (
-	'directContentElements' => array
+	'directContentElementsArticles' => array
 	(
-		'tables' => array('tl_direct_content_elements'),
+		'tables' => array('tl_direct_content_elements_articles'),
 		'icon'   => 'system/modules/DirectContentElements/assets/icon.png'
 	)
 ));
 
-if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElements' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
+if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsArticles' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
 {
-	\Controller::redirect(str_replace('do=directContentElements', 'do=article&amp;table=tl_content', \Environment::get('request')));
+	\Controller::redirect(str_replace('do=directContentElementsArticles', 'do=article&amp;table=tl_content', \Environment::get('request')));
 }
 
+// for news
+array_insert($GLOBALS['BE_MOD']['content'], array_search('news', array_keys($GLOBALS['BE_MOD']['content'])) + 1, array
+(
+	'directContentElementsNews' => array
+	(
+		'tables' => array('tl_direct_content_elements_news'),
+		'icon'   => 'system/modules/DirectContentElements/assets/icon.png'
+	)
+));
+
+if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsNews' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
+{
+	\Controller::redirect(str_replace('do=directContentElementsNews', 'do=news&amp;table=tl_content', \Environment::get('request')));
+}
+
+// for events
+array_insert($GLOBALS['BE_MOD']['content'], array_search('calendar', array_keys($GLOBALS['BE_MOD']['content'])) + 1, array
+(
+	'directContentElementsEvents' => array
+	(
+		'tables' => array('tl_direct_content_elements_events'),
+		'icon'   => 'system/modules/DirectContentElements/assets/icon.png'
+	)
+));
+
+if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsEvents' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
+{
+	\Controller::redirect(str_replace('do=directContentElementsEvents', 'do=calendar&amp;table=tl_content', \Environment::get('request')));
+}
+
+/**
+ * adding custom css to backend
+ */
+if (TL_MODE == 'BE')
+{
+	$GLOBALS['TL_CSS'][] = 'system/modules/DirectContentElements/assets/backend.css';
+}
 
 ?>
