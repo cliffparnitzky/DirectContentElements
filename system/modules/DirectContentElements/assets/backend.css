@@ -1,0 +1,2 @@
+.navigation.directContentElementsArticles, .navigation.directContentElementsNews, .navigation.directContentElementsEvents { margin-left: 20px; }
+.navigation.directContentElementsArticles span, .navigation.directContentElementsNews  span, .navigation.directContentElementsEvents  span{ display: none; }
