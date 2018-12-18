@@ -31,8 +31,8 @@
  * Define name and tooltip for preferences (inactive modules)
  */
 $GLOBALS['TL_LANG']['MOD']['DirectContentElements']         = 'Direct content element listing';
-$GLOBALS['TL_LANG']['MOD']['directContentElementsArticles'] = array('Content elements of articles', 'Directly lists all content elements of articles.');
-$GLOBALS['TL_LANG']['MOD']['directContentElementsNews']     = array('Content elements of news', 'Directly lists all content elements of news.');
-$GLOBALS['TL_LANG']['MOD']['directContentElementsEvents']   = array('Content elements of events', 'Directly lists all content elements of events.');
+$GLOBALS['TL_LANG']['MOD']['directContentElementsArticles'] = array('Articles content elements', 'Directly lists all content elements of articles.');
+$GLOBALS['TL_LANG']['MOD']['directContentElementsNews']     = array('News content elements', 'Directly lists all content elements of news.');
+$GLOBALS['TL_LANG']['MOD']['directContentElementsEvents']   = array('Events content elements', 'Directly lists all content elements of events.');
 
 ?>
