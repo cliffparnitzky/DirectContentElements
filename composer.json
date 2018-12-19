@@ -3,7 +3,7 @@
 	"description":"Directly lists all content elements of articles, news and events. Provides the possibility to edit content elements across parent containers (multi-editing).",
 	"keywords":["contao","backend","multi edit","content elements"],
 	"type":"contao-module",
-	"license":"LGPL-3.0+",
+		"license":"LGPL-3.0-or-later",
 	"authors":[
 		{
 			"name":"Cliff Parnitzky",
