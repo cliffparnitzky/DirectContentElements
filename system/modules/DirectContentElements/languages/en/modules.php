@@ -2,7 +2,7 @@
 
 /**
  * Contao Open Source CMS
- * Copyright (C) 2005-2018 Leo Feyer
+ * Copyright (C) 2005-2019 Leo Feyer
  *
  * Formerly known as TYPOlight Open Source CMS.
  *
@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Cliff Parnitzky 2014-2018
+ * @copyright  Cliff Parnitzky 2014-2019
  * @author     Cliff Parnitzky
  * @package    DirectContentElements
  * @license    LGPL
@@ -31,8 +31,8 @@
  * Define name and tooltip for preferences (inactive modules)
  */
 $GLOBALS['TL_LANG']['MOD']['DirectContentElements']         = 'Direct content element listing';
-$GLOBALS['TL_LANG']['MOD']['directContentElementsArticles'] = array('Content elements of articles', 'Directly lists all content elements of articles.');
-$GLOBALS['TL_LANG']['MOD']['directContentElementsNews']     = array('Content elements of news', 'Directly lists all content elements of news.');
-$GLOBALS['TL_LANG']['MOD']['directContentElementsEvents']   = array('Content elements of events', 'Directly lists all content elements of events.');
+$GLOBALS['TL_LANG']['MOD']['directContentElementsArticles'] = array('Article elements', 'Directly lists all content elements of articles.');
+$GLOBALS['TL_LANG']['MOD']['directContentElementsEvents']   = array('Event elements', 'Directly lists all content elements of events.');
+$GLOBALS['TL_LANG']['MOD']['directContentElementsNews']     = array('News elements', 'Directly lists all content elements of news.');
 
 ?>
