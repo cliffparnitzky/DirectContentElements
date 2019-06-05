@@ -42,8 +42,13 @@ class DirectContentElementsHooks
    */
   public function repositionMenuItems($arrModules, $blnShowAll)
   {
-    //$arrItem = $arrModules['content']['modules']['directContentElementsArticles'];
-    //unset($arrModules['content']['modules']['directContentElementsArticles']);
+    print_r($arrModules);
+    
+    $arrItem = $arrModules['content']['modules']['directContentElementsArticles'];
+    print_r($arrItem);
+    unset($arrModules['content']['modules']['directContentElementsArticles']);
+    
+    print_r($arrModules);
     //array_insert($arrModules['content']['modules'], array_search('article', array_keys($arrModules['content']['modules'])) + 1, $arrItem);
     
     print_r($arrModules);
