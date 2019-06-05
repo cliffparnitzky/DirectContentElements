@@ -45,7 +45,7 @@ class DirectContentElementsHooks
     $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles'));
     if (\in_array('ContaoCalendarBundle', $bundles))
     {
-      array_insert($arrModules['content'], array_search('calendar', array_keys($arrModules['content'])) + 1, array
+      array_insert($arrModules['content']['modules'], array_search('calendar', array_keys($arrModules['content']['modules'])) + 1, array
       (
         'directContentElementsEvents' => array
         (
@@ -65,7 +65,7 @@ class DirectContentElementsHooks
     $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles'));
     if (\in_array('ContaoNewsBundle', $bundles))
     {
-      array_insert($arrModules['content'], array_search('news', array_keys($arrModules['content'])) + 1, array
+      array_insert($arrModules['content']['modules'], array_search('news', array_keys($arrModules['content']['modules'])) + 1, array
       (
         'directContentElementsNews' => array
         (
