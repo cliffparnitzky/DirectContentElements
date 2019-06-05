@@ -42,9 +42,11 @@ class DirectContentElementsHooks
    */
   public function repositionMenuItems($arrModules, $blnShowAll)
   {
-    $arrItem = $arrModules['content']['modules']['directContentElementsArticles'];
-    unset($arrModules['content']['modules']['directContentElementsArticles']);
-    array_insert($arrModules['content']['modules'], array_search('article', array_keys($arrModules['content']['modules'])) + 1, $arrItem);
+    //$arrItem = $arrModules['content']['modules']['directContentElementsArticles'];
+    //unset($arrModules['content']['modules']['directContentElementsArticles']);
+    //array_insert($arrModules['content']['modules'], array_search('article', array_keys($arrModules['content']['modules'])) + 1, $arrItem);
+    
+    print_r($arrModules);
     
     $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles'));
     if (\in_array('ContaoCalendarBundle', $bundles))
