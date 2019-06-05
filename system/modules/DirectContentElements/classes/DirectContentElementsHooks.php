@@ -38,18 +38,30 @@
 class DirectContentElementsHooks
 {
   /**
-   * Add the menu below calendar
+   * Add the navigation entry below calendar
    */
-  public function addCalendarIfAvailable($arrModules, $blnShowAll)
+  public function addCalendarNavigationIfAvailable($arrModules, $blnShowAll)
   {
     $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles'));
     if (\in_array('ContaoCalendarBundle', $bundles))
     {
+      $strModuleName = 'directContentElementsEvents';
+      
+      /** @var RouterInterface $router */
+      $router = \System::getContainer()->get('router');
+      
+      $strRefererId = \System::getContainer()->get('request_stack')->getCurrentRequest()->attributes->get('_contao_referer_id'); 
+      
       array_insert($arrModules['content']['modules'], array_search('calendar', array_keys($arrModules['content']['modules'])) + 1, array
       (
-        'directContentElementsEvents' => array
+        $strModuleName => array
         (
-          'tables' => array('tl_direct_content_elements_events')
+          'tables' => array('tl_direct_content_elements_events'),
+          'label'        => \StringUtil::specialchars($GLOBALS['TL_LANG']['MOD'][$strModuleName][0]),
+          'title'        => \StringUtil::specialchars($GLOBALS['TL_LANG']['MOD'][$strModuleName][1]),
+          'class'        => 'navigation ' . $strModuleName,
+          'href'         => $router->generate('contao_backend', array('do'=>$strModuleName, 'ref'=>$strRefererId)),
+          'isActive'     => false
         )
       ));
     }
@@ -58,9 +70,9 @@ class DirectContentElementsHooks
   }
   
   /**
-   * Add the menu below news
+   * Add the navigation entry below news
    */
-  public function addNewsIfAvailable($arrModules, $blnShowAll)
+  public function addNewsNavigationIfAvailable($arrModules, $blnShowAll)
   {
     $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles'));
     if (\in_array('ContaoNewsBundle', $bundles))

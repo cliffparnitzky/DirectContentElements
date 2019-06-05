@@ -67,8 +67,9 @@ if (\in_array('ContaoNewsBundle', $bundles))
 /**
  * Hooks
  */
-$GLOBALS['TL_HOOKS']['getUserNavigation'][] = array('DirectContentElementsHooks', 'addCalendarIfAvailable');
-$GLOBALS['TL_HOOKS']['getUserNavigation'][] = array('DirectContentElementsHooks', 'addNewsIfAvailable');
+//$GLOBALS['TL_HOOKS']['getUserNavigation'][] = array('DirectContentElementsHooks', 'addArticleNavigation');
+$GLOBALS['TL_HOOKS']['getUserNavigation'][] = array('DirectContentElementsHooks', 'addCalendarNavigationIfAvailable');
+$GLOBALS['TL_HOOKS']['getUserNavigation'][] = array('DirectContentElementsHooks', 'addNewsNavigationIfAvailable');
 
 /**
  * adding custom css to backend
