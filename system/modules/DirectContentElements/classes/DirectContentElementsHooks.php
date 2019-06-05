@@ -42,22 +42,27 @@ class DirectContentElementsHooks
    */
   public function repositionMenuItems($arrModules, $blnShowAll)
   {
-    print_r($arrModules);
-    
-    $arrItem = array('directContentElementsArticles' => $arrModules['content']['modules']['directContentElementsArticles']);
-    print_r($arrItem);
-    unset($arrModules['content']['modules']['directContentElementsArticles']);
-    
-    print_r($arrModules);
-    array_insert($arrModules['content']['modules'], array_search('article', array_keys($arrModules['content']['modules'])) + 1, $arrItem);
-    
-    print_r($arrModules);
+    $arrModules = $this->moveMenuItem($arrModules, 'directContentElementsArticles', 'article');
     
     $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles'));
     if (\in_array('ContaoCalendarBundle', $bundles))
     {
+      $arrModules = $this->moveMenuItem($arrModules, 'directContentElementsEvents', 'calendar');
+    }
+    if (\in_array('ContaoNewsBundle', $bundles))
+    {
+      $arrModules = $this->moveMenuItem($arrModules, 'directContentElementsNews', 'news');
     }
 
+    return $arrModules;
+  }
+  
+  private function moveMenuItem($arrModules, $strItemToMove, $strItemToInsertAfter)
+  {
+    $arrItem = array($strItemToMove => $arrModules['content']['modules'][$strItemToMove]);
+    unset($arrModules['content']['modules'][$strItemToMove]);
+    array_insert($arrModules['content']['modules'], array_search($strItemToInsertAfter, array_keys($arrModules['content']['modules'])) + 1, $arrItem);
+    
     return $arrModules;
   }
 }
