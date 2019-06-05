@@ -46,17 +46,9 @@ if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsArticles' && $_GET['a
 
 $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles'));
 
-// for events
+// for calendar
 if (\in_array('ContaoCalendarBundle', $bundles))
 {
-  array_insert($GLOBALS['BE_MOD']['content'], array_search('calendar', array_keys($GLOBALS['BE_MOD']['content'])) + 1, array
-  (
-    'directContentElementsEvents' => array
-    (
-      'tables' => array('tl_direct_content_elements_events')
-    )
-  ));
-
   if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsEvents' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
   {
     \Controller::redirect(str_replace('do=directContentElementsEvents', 'do=calendar&amp;table=tl_content', \Environment::get('request')));
@@ -66,19 +58,17 @@ if (\in_array('ContaoCalendarBundle', $bundles))
 // for news
 if (\in_array('ContaoNewsBundle', $bundles))
 {
-  array_insert($GLOBALS['BE_MOD']['content'], array_search('news', array_keys($GLOBALS['BE_MOD']['content'])) + 1, array
-  (
-    'directContentElementsNews' => array
-    (
-      'tables' => array('tl_direct_content_elements_news')
-    )
-  ));
-
   if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsNews' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
   {
     \Controller::redirect(str_replace('do=directContentElementsNews', 'do=news&amp;table=tl_content', \Environment::get('request')));
   }
 }
+
+/**
+ * Hooks
+ */
+$GLOBALS['TL_HOOKS']['getUserNavigation'][] = array('DirectContentElementsHooks', 'addCalendarIfAvailable');
+$GLOBALS['TL_HOOKS']['getUserNavigation'][] = array('DirectContentElementsHooks', 'addNewsIfAvailable');
 
 /**
  * adding custom css to backend
