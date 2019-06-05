@@ -31,13 +31,10 @@
  * Backend modules
  */
 // for articles
-array_insert($GLOBALS['BE_MOD']['content'], array_search('article', array_keys($GLOBALS['BE_MOD']['content'])) + 1, array
+$GLOBALS['BE_MOD']['content']['directContentElementsArticles'] = array
 (
-  'directContentElementsArticles' => array
-  (
-    'tables' => array('tl_direct_content_elements_articles')
-  )
-));
+  'tables' => array('tl_direct_content_elements_articles')
+);
 
 if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsArticles' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
 {
@@ -49,6 +46,11 @@ $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles'));
 // for calendar
 if (\in_array('ContaoCalendarBundle', $bundles))
 {
+  $GLOBALS['BE_MOD']['content']['directContentElementsEvents'] = array
+  (
+    'tables' => array('tl_direct_content_elements_events')
+  );
+
   if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsEvents' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
   {
     \Controller::redirect(str_replace('do=directContentElementsEvents', 'do=calendar&amp;table=tl_content', \Environment::get('request')));
@@ -58,6 +60,11 @@ if (\in_array('ContaoCalendarBundle', $bundles))
 // for news
 if (\in_array('ContaoNewsBundle', $bundles))
 {
+  $GLOBALS['BE_MOD']['content']['directContentElementsNews'] = array
+  (
+    'tables' => array('tl_direct_content_elements_news')
+  );
+
   if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsNews' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
   {
     \Controller::redirect(str_replace('do=directContentElementsNews', 'do=news&amp;table=tl_content', \Environment::get('request')));
@@ -67,9 +74,7 @@ if (\in_array('ContaoNewsBundle', $bundles))
 /**
  * Hooks
  */
-//$GLOBALS['TL_HOOKS']['getUserNavigation'][] = array('DirectContentElementsHooks', 'addArticleNavigation');
-$GLOBALS['TL_HOOKS']['getUserNavigation'][] = array('DirectContentElementsHooks', 'addCalendarNavigationIfAvailable');
-$GLOBALS['TL_HOOKS']['getUserNavigation'][] = array('DirectContentElementsHooks', 'addNewsNavigationIfAvailable');
+$GLOBALS['TL_HOOKS']['getUserNavigation'][] = array('DirectContentElementsHooks', 'repositionMenuItems');
 
 /**
  * adding custom css to backend
