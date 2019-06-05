@@ -44,12 +44,12 @@ class DirectContentElementsHooks
   {
     print_r($arrModules);
     
-    $arrItem = $arrModules['content']['modules']['directContentElementsArticles'];
+    $arrItem = array('directContentElementsArticles' => $arrModules['content']['modules']['directContentElementsArticles']);
     print_r($arrItem);
     unset($arrModules['content']['modules']['directContentElementsArticles']);
     
     print_r($arrModules);
-    //array_insert($arrModules['content']['modules'], array_search('article', array_keys($arrModules['content']['modules'])) + 1, $arrItem);
+    array_insert($arrModules['content']['modules'], array_search('article', array_keys($arrModules['content']['modules'])) + 1, $arrItem);
     
     print_r($arrModules);
     
