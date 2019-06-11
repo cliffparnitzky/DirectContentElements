@@ -15,7 +15,8 @@
 ClassLoader::addClasses(array
 (
 	// Classes
-	'DirectContentElements' => 'system/modules/DirectContentElements/classes/DirectContentElements.php',
+	'DirectContentElements'      => 'system/modules/DirectContentElements/classes/DirectContentElements.php',
+	'DirectContentElementsHooks' => 'system/modules/DirectContentElements/classes/DirectContentElementsHooks.php',
 
 	// Drivers
 	'DC_DynamicTable'       => 'system/modules/DirectContentElements/drivers/DC_DynamicTable.php',

@@ -27,7 +27,6 @@ https://github.com/cliffparnitzky/DirectContentElements/issues
 Compatibility
 -------------
 
-- Contao version >= 3.2.0 ... <  3.6.0
 - Contao version >= 4.4.0
 
 
