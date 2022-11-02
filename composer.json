@@ -1,30 +1,35 @@
 {
-	"name":"cliffparnitzky/direct-content-elements",
-	"description":"Directly lists all content elements of articles, news and events. Provides the possibility to edit content elements across parent containers (multi-editing).",
-	"keywords":["contao","backend","multi edit","content elements"],
-	"type":"contao-module",
-	"license":"LGPL-3.0-or-later",
-	"authors":[
+	"name": "cliffparnitzky/direct-content-elements",
+	"description": "Directly lists all content elements of articles, news and events. Provides the possibility to edit content elements across parent containers (multi-editing).",
+	"keywords": [
+		"contao",
+		"backend",
+		"multi edit",
+		"content elements"
+	],
+	"type": "contao-module",
+	"license": "LGPL-3.0-or-later",
+	"authors": [
 		{
-			"name":"Cliff Parnitzky",
-			"email":"contao@cliff-parnitzky.de",
-			"role":"Developer"
+			"name": "Cliff Parnitzky",
+			"email": "contao@cliff-parnitzky.de",
+			"role": "Developer"
 		}
 	],
-	"support":{
-		"email":"contao@cliff-parnitzky.de",
-		"issues":"https://github.com/cliffparnitzky/DirectContentElements/issues",
-		"source":"https://github.com/cliffparnitzky/DirectContentElements"
+	"support": {
+		"email": "contao@cliff-parnitzky.de",
+		"issues": "https://github.com/cliffparnitzky/DirectContentElements/issues",
+		"source": "https://github.com/cliffparnitzky/DirectContentElements"
 	},
-	"require":{
-		"php":">=7.1",
-		"contao/core-bundle":"~4.4",
-		"contao-community-alliance/composer-plugin":"~3.0"
+	"require": {
+		"php": ">=7.2",
+		"contao/core-bundle": "~4.9",
+		"contao-community-alliance/composer-plugin": "~3.0"
 	},
-	"extra":{
-		"contao":{
-			"sources":{
-				"system/modules/DirectContentElements":"system/modules/DirectContentElements"
+	"extra": {
+		"contao": {
+			"sources": {
+				"system/modules/DirectContentElements": "system/modules/DirectContentElements"
 			}
 		},
 		"branch-alias": {
