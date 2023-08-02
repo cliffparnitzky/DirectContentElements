@@ -36,7 +36,7 @@ $GLOBALS['BE_MOD']['content']['directContentElementsArticles'] = array
   'tables' => array('tl_direct_content_elements_articles')
 );
 
-if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsArticles' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
+if(TL_MODE == 'BE' && ($_GET['do'] ?? null) == 'directContentElementsArticles' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
 {
   \Controller::redirect(str_replace('do=directContentElementsArticles', 'do=article&amp;table=tl_content', \Environment::get('request')));
 }
@@ -51,7 +51,7 @@ if (\in_array('ContaoCalendarBundle', $bundles))
     'tables' => array('tl_direct_content_elements_events')
   );
 
-  if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsEvents' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
+  if(TL_MODE == 'BE' && ($_GET['do'] ?? null) == 'directContentElementsEvents' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
   {
     \Controller::redirect(str_replace('do=directContentElementsEvents', 'do=calendar&amp;table=tl_content', \Environment::get('request')));
   }
@@ -65,7 +65,7 @@ if (\in_array('ContaoNewsBundle', $bundles))
     'tables' => array('tl_direct_content_elements_news')
   );
 
-  if(TL_MODE == 'BE' && $_GET['do'] == 'directContentElementsNews' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
+  if(TL_MODE == 'BE' && ($_GET['do'] ?? null) == 'directContentElementsNews' && $_GET['act'] == 'editAll' && $_GET['fields'] == null)
   {
     \Controller::redirect(str_replace('do=directContentElementsNews', 'do=news&amp;table=tl_content', \Environment::get('request')));
   }
