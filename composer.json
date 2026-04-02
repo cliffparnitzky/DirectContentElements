@@ -7,7 +7,7 @@
 		"multi edit",
 		"content elements"
 	],
-	"type": "contao-module",
+	"type": "contao-bundle",
 	"license": "LGPL-3.0-or-later",
 	"authors": [
 		{
@@ -22,18 +22,32 @@
 		"source": "https://github.com/cliffparnitzky/DirectContentElements"
 	},
 	"require": {
-		"php": ">=7.2",
-		"contao/core-bundle": "~4.9",
-		"contao-community-alliance/composer-plugin": "~3.0"
+		"php": "^8.3",
+		"contao/core-bundle": "^5.3"
+	},
+	"require-dev": {
+		"contao/manager-plugin": "^2.12"
+	},
+	"autoload": {
+		"psr-4": {
+			"CliffParnitzky\\DirectContentElements\\": "src/"
+		},
+		"classmap": [
+			"contao/"
+		],
+		"exclude-from-classmap": [
+			"contao/dca/",
+			"contao/languages/"
+		]
+	},
+	"config": {
+		"allow-plugins": {
+			"contao-components/installer": false,
+			"contao/manager-plugin": false,
+			"contao-community-alliance/composer-plugin": true
+		}
 	},
 	"extra": {
-		"contao": {
-			"sources": {
-				"system/modules/DirectContentElements": "system/modules/DirectContentElements"
-			}
-		},
-		"branch-alias": {
-			"dev-master": "1.3.x-dev"
-		}
+		"contao-manager-plugin": "CliffParnitzky\\DirectContentElements\\ContaoManager\\Plugin"
 	}
 }
